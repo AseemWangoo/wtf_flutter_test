@@ -23,6 +23,7 @@ wtf_flutter_test/
 - Node.js ≥ 18 (token server)
 - Android emulator or device (two instances for cross-app chat demo)
 - [100ms](https://www.100ms.live/) Video Conferencing template + API credentials
+- Firebase project **or** [Firebase Emulator Suite](https://firebase.google.com/docs/emulator-suite) (default for local sync)
 
 ## Quick start
 
@@ -37,13 +38,35 @@ npm start
 # → http://localhost:3000/health
 ```
 
-### 2. Flutter apps
+### 2. Firebase (cross-app chat + call requests)
+
+**Option A — Emulator (recommended for local demo)**
 
 ```bash
-# Guru (Member)
+# Install Firebase CLI, then:
+firebase init emulators   # select Firestore only
+firebase emulators:start --only firestore
+# Firestore UI: http://localhost:4000 — listens on :8080
+```
+
+Apps default to `USE_FIRESTORE_EMULATOR=true` and `10.0.2.2:8080` on Android.
+
+**Option B — Real project**
+
+```bash
+dart pub global activate flutterfire_cli
+flutterfire configure   # run inside guru_app and trainer_app
+# Replace REPLACE_ME in lib/firebase_options.dart
+flutter run --dart-define=USE_FIRESTORE_EMULATOR=false
+```
+
+### 3. Flutter apps
+
+```bash
+# Guru (Member) — onboarding DK → home (3 cards)
 cd guru_app && flutter pub get && flutter run
 
-# Trainer (separate terminal / second emulator)
+# Trainer (separate terminal / second emulator) — login as Aarav → home (4 tiles)
 cd trainer_app && flutter pub get && flutter run
 ```
 
@@ -52,7 +75,7 @@ Copy `guru_app/.env.example` → `guru_app/.env` and `trainer_app/.env.example` 
 - `TOKEN_SERVER_URL` — e.g. `http://10.0.2.2:3000` on Android emulator (host machine)
 - `HMS_TEMPLATE_ID` — same as token server
 
-### 3. Analyze (zero warnings target)
+### 4. Analyze (zero warnings target)
 
 ```bash
 cd shared && flutter pub get && flutter analyze

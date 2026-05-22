@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
+import 'features/shell/trainer_app_gate.dart';
+
 class TrainerApp extends StatelessWidget {
   const TrainerApp({super.key});
 
@@ -10,12 +12,7 @@ class TrainerApp extends StatelessWidget {
       title: 'Trainer',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(primary: AppColors.trainerPrimary),
-      home: const SetupHomePage(
-        appLabel: 'Trainer',
-        roleBadge: 'Lead Trainer',
-        personaName: 'Aarav',
-        primary: AppColors.trainerPrimary,
-      ),
+      home: const TrainerAppGate(),
     );
   }
 }

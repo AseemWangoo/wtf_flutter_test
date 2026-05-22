@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
+import 'features/shell/guru_app_gate.dart';
+
 class GuruApp extends StatelessWidget {
   const GuruApp({super.key});
 
@@ -10,12 +12,7 @@ class GuruApp extends StatelessWidget {
       title: 'Guru',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(primary: AppColors.guruPrimary),
-      home: const SetupHomePage(
-        appLabel: 'Guru',
-        roleBadge: 'Member',
-        personaName: 'DK',
-        primary: AppColors.guruPrimary,
-      ),
+      home: const GuruAppGate(),
     );
   }
 }

@@ -17,14 +17,16 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
-## Prompt #2 — (placeholder)
+## Prompt #2 — Hour 0.5–1.5 shared foundation
 
 | Field | Value |
 |-------|-------|
-| **Tool** | |
-| **Intent** | |
-| **Output** | |
-| **Commit** | |
+| **Tool** | Cursor (Claude) |
+| **Intent** | Seed data (DK/Aarav), Hive auth, Firestore chat/calls, Riverpod providers, onboarding + home shells |
+| **Output** | `SeedData`, `HiveAuthService`, `FirestoreChatService`, `FirestoreCallService`, `GuruAppGate`, `TrainerAppGate`, scheduler utils tests |
+| **Commit** | `feat: hour-1 shared foundation — seed, services, onboarding, home` (pending) |
+
+**Snippet:** Cross-app sync via Firestore emulator; local session logs in Hive; `FakeAuthService` for widget tests.
 
 ---
 

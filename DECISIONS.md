@@ -12,9 +12,10 @@
 
 ## ADR-002: Storage — Hive + sync adapter
 
-**Status:** Accepted (sync TBD in Hour 1)  
-**Context:** Assessment requires local persistence + “live” UX; optional Firebase for speed.  
-**Decision:** **Hive** for structured local cache (users, messages, requests, logs). **Firestore** (or in-memory hub for dev-only) as cross-app sync when both emulators run.  
+**Status:** Accepted  
+**Context:** Assessment requires local persistence + “live” UX; two apps on two emulators must share chat/requests.  
+**Decision:** **Hive** for auth session + session logs per device. **Firestore** (emulator by default) for `messages` and `call_requests` collections.  
+**Emulator:** `10.0.2.2:8080` (Android) / `localhost:8080` (iOS) via `AppBootstrap`.  
 **Alternatives considered:** SQLite/drift (heavier setup), pure in-memory (fails two-device manual test).  
 **Consequences:** Offline-friendly lists; need clear `ChatService` boundary so sync swap doesn’t touch UI.
 

@@ -1,6 +1,6 @@
 name: guru_app
 description: Guru (Member) app — DK persona, chat, scheduling, 100ms calls.
-publish_to: "none"
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.13.0
   flutter_riverpod: ^2.6.1
   shared:
     path: ../shared
