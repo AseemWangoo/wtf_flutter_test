@@ -1,0 +1,34 @@
+# Secrets
+.env
+**/.env
+!**/.env.example
+
+# Flutter / Dart
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/build/
+**/.pub-cache/
+**/.pub/
+**/pubspec.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Node (token server)
+token_server/node_modules/
+
+# Android local
+**/android/local.properties
+**/android/.gradle/
+
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+
+# Assessment doc (optional — keep local only)
+# *.docx

@@ -1,0 +1,47 @@
+# AI Ledger
+
+Structured log of AI-assisted work for the WTF Flutter assessment. Update on every meaningful prompt.
+
+---
+
+## Prompt #1 — Hour 0 setup & docs shell
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Scaffold monorepo: docs, `shared` package, `token_server`, Riverpod app shells, ADRs |
+| **Output** | `README.md`, `ARCHITECTURE.md`, `DECISIONS.md` (ADRs 1–4), `shared/` package, Node token server, themed `main.dart` stubs |
+| **Commit** | `chore: hour-0 setup — docs shell, shared package, token server` (pending) |
+
+**Snippet (ADR choice):** Riverpod for state; Hive + Firestore sync boundary; 100ms token server separate from Flutter.
+
+---
+
+## Prompt #2 — (placeholder)
+
+| Field | Value |
+|-------|-------|
+| **Tool** | |
+| **Intent** | |
+| **Output** | |
+| **Commit** | |
+
+---
+
+## Debugging with AI
+
+| # | Error | AI steps | Fix |
+|---|-------|----------|-----|
+| 1 | | | |
+
+---
+
+## Refactor with AI
+
+| # | Before | After | Commit |
+|---|--------|-------|--------|
+| 1 | | | |
+
+---
+
+_Checklist: ≥10 meaningful entries · ≥6 commits referencing AI before submission._
