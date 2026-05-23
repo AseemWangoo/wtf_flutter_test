@@ -2,6 +2,10 @@
 
 Two Flutter apps (Member **DK** + Trainer **Aarav**) with real-time chat, call scheduling, **100ms** video, and session logs. Local-first; AI-native workflow documented in `AI_LEDGER.md`.
 
+## Demo video
+
+**[Watch Demo.mp4](./Demo.mp4)** — ~3 min end-to-end flow (onboard → chat → schedule → approve → 100ms call → session logs).
+
 ## Repository layout
 
 ```
@@ -78,10 +82,10 @@ Copy `guru_app/.env.example` → `guru_app/.env` and `trainer_app/.env.example` 
 
 ### Host URLs by platform
 
-| Target | Firestore emulator | Token server |
-|--------|-------------------|--------------|
-| Android emulator | `10.0.2.2:8080` (default) | `http://10.0.2.2:3000` |
-| iOS Simulator | `localhost:8080` | `http://localhost:3000` |
+| Target                       | Firestore emulator          | Token server                |
+| ---------------------------- | --------------------------- | --------------------------- |
+| Android emulator             | `10.0.2.2:8080` (default)   | `http://10.0.2.2:3000`      |
+| iOS Simulator                | `localhost:8080`            | `http://localhost:3000`     |
 | Physical device (same Wi‑Fi) | `http://<your-mac-ip>:8080` | `http://<your-mac-ip>:3000` |
 
 Apps pick Firestore host automatically in `bootstrap.dart` (Android vs iOS). Override token URL with:
@@ -126,9 +130,9 @@ flutter run --dart-define=HMS_DEV_ROOM_ID=YOUR_ROOM_ID --dart-define=TOKEN_SERVE
 
 1. Firestore emulator running; Guru + Trainer apps open.
 2. Guru → **Schedule Call** → pick Today → **6:00 PM** → note `Macros review` → **Request Call**.
-3. Toast: *Call requested. Waiting for trainer approval.* — request shows under **My Requests**.
+3. Toast: _Call requested. Waiting for trainer approval._ — request shows under **My Requests**.
 4. Trainer → **Requests** → see DK pending → **Approve**.
-5. Guru chat shows system message: *Call approved for Today 6:00 PM.*
+5. Guru chat shows system message: _Call approved for Today 6:00 PM._
 6. Guru **Upcoming Calls** section lists approved slot. Try double-booking same slot → error.
 
 ## Manual test — Chat (Hour 2)
@@ -143,17 +147,17 @@ flutter run --dart-define=HMS_DEV_ROOM_ID=YOUR_ROOM_ID --dart-define=TOKEN_SERVE
 
 Prerequisites: Firestore emulator, token server with valid 100ms `.env`, two emulators (Guru + Trainer).
 
-| Step | App | Action | Expected |
-|------|-----|--------|----------|
-| 1 | Guru | Complete onboarding → assign Aarav | Home with 3 cards |
-| 2 | Guru | **Chat with Trainer** → send `Hi Coach 👋` | Message appears; typing delay |
-| 3 | Trainer | **Chats** → open DK → reply | DK sees reply; read receipts update |
-| 4 | Guru | **Schedule Call** → Today → slot → note → **Request Call** | Pending under My Requests |
-| 5 | Trainer | **Requests** → **Approve** | Guru chat system message; upcoming call listed |
-| 6 | Both | **Join Call** (schedule or chat camera) → pre-join → **Join** | Two video tiles |
-| 7 | Both | Mute / camera / flip → **End** | Post-call screen |
-| 8 | Guru | Rate 1–5 + optional note → **Submit** | Session saved toast |
-| 9 | Both | **My Sessions** / **Sessions** | Log with duration; filters; Trainer **Members** shows DK |
+| Step | App     | Action                                                        | Expected                                                 |
+| ---- | ------- | ------------------------------------------------------------- | -------------------------------------------------------- |
+| 1    | Guru    | Complete onboarding → assign Aarav                            | Home with 3 cards                                        |
+| 2    | Guru    | **Chat with Trainer** → send `Hi Coach 👋`                    | Message appears; typing delay                            |
+| 3    | Trainer | **Chats** → open DK → reply                                   | DK sees reply; read receipts update                      |
+| 4    | Guru    | **Schedule Call** → Today → slot → note → **Request Call**    | Pending under My Requests                                |
+| 5    | Trainer | **Requests** → **Approve**                                    | Guru chat system message; upcoming call listed           |
+| 6    | Both    | **Join Call** (schedule or chat camera) → pre-join → **Join** | Two video tiles                                          |
+| 7    | Both    | Mute / camera / flip → **End**                                | Post-call screen                                         |
+| 8    | Guru    | Rate 1–5 + optional note → **Submit**                         | Session saved toast                                      |
+| 9    | Both    | **My Sessions** / **Sessions**                                | Log with duration; filters; Trainer **Members** shows DK |
 
 Debug: tap **⋮** DevPanel on home (debug builds) for tagged logs.
 
@@ -166,5 +170,5 @@ Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:
 See **[SUBMISSION.md](SUBMISSION.md)** for the full checklist.
 
 - GitHub repo link
-- ~3 min demo video (follow 9-step script above)
+- Demo video: [Demo.mp4](./Demo.mp4) (or hosted link in your submission form)
 - `AI_LEDGER.md` with ≥10 meaningful AI entries
