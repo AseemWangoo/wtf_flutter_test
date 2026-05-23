@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../config/rtc_config.dart';
@@ -7,6 +6,7 @@ import '../../data/constants.dart';
 import '../../firebase/app_bootstrap.dart';
 import '../../models/call_request.dart';
 import '../../models/room_meta.dart';
+import '../../utils/dev_log.dart';
 import '../call_service.dart';
 
 class FirestoreCallService implements CallService {
@@ -43,7 +43,7 @@ class FirestoreCallService implements CallService {
   @override
   Future<CallRequest> createRequest(CallRequest request) async {
     if (!AppBootstrap.firebaseReady) {
-      debugPrint('[SCHEDULE] Firebase offline — request stored locally only');
+      DevLog.log('SCHEDULE', 'Firebase offline — request stored locally only');
       return request;
     }
     await _requests.doc(request.id).set(request.toJson());

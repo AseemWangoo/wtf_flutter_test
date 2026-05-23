@@ -83,6 +83,14 @@ cd ../guru_app && flutter pub get && flutter analyze
 cd ../trainer_app && flutter pub get && flutter analyze
 ```
 
+## Manual test — Session logs & DevPanel (Hour 5)
+
+1. Complete a video call (Hour 4) and submit rating / notes on both apps.
+2. Guru → **My Sessions** — verify log shows date, duration, rating, note.
+3. Trainer → **Sessions** — verify same call with trainer notes.
+4. Toggle filters **All** / **7 days** / **Month** (empty state when no matches).
+5. Tap floating **⋮** (DevPanel) on home — see last 20 tagged logs (`[AUTH]`, `[CHAT]`, `[RTC]`, `[SCHEDULE]`, `[LOG]`).
+
 ## Manual test — 100ms video (Hour 4)
 
 1. Set `HMS_DEV_ROOM_ID` in `token_server/.env` (room id from [100ms dashboard](https://dashboard.100ms.live/)).

@@ -8,7 +8,7 @@ class TrainerHomePage extends StatelessWidget {
 
   void _comingSoon(BuildContext context, String feature) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature — coming in Hour 4+')),
+      SnackBar(content: Text('$feature — coming soon')),
     );
   }
 
@@ -27,6 +27,17 @@ class TrainerHomePage extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => TrainerRequestsPage(trainer: user),
+      ),
+    );
+  }
+
+  void _openSessions(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => SessionLogsPage(
+          currentUser: user,
+          primaryColor: AppColors.trainerPrimary,
+        ),
       ),
     );
   }
@@ -70,7 +81,7 @@ class TrainerHomePage extends StatelessWidget {
                   icon: Icons.history,
                   label: 'Sessions',
                   color: AppColors.trainerPrimary,
-                  onTap: () => _comingSoon(context, 'Sessions'),
+                  onTap: () => _openSessions(context),
                 ),
               ],
             ),

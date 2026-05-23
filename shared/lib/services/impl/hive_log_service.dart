@@ -2,6 +2,7 @@ import 'dart:async';
 
 import '../../models/session_log.dart';
 import '../../storage/hive_store.dart';
+import '../../utils/dev_log.dart';
 import '../log_service.dart';
 
 class HiveLogService implements LogService {
@@ -46,6 +47,7 @@ class HiveLogService implements LogService {
     logs.removeWhere((l) => l.id == log.id);
     logs.insert(0, log);
     await _writeAll(logs);
+    DevLog.log('LOG', 'session saved id=${log.id} duration=${log.durationSec}s');
   }
 
   @override

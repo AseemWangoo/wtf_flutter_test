@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../data/constants.dart';
 import '../../firebase/app_bootstrap.dart';
 import '../../models/message.dart';
+import '../../utils/dev_log.dart';
 import '../chat_service.dart';
 
 class FirestoreChatService implements ChatService {
@@ -36,17 +36,17 @@ class FirestoreChatService implements ChatService {
   @override
   Future<void> sendMessage(Message message) async {
     if (!AppBootstrap.firebaseReady) {
-      debugPrint('[CHAT] Firebase offline — message not synced');
+      DevLog.log('CHAT', 'Firebase offline — message not synced');
       return;
     }
-    debugPrint('[CHAT] send ${message.id}');
+    DevLog.log('CHAT', 'send ${message.id}');
     await _messages(message.chatId).doc(message.id).set(message.toJson());
   }
 
   @override
   Future<void> markRead(String chatId, String readerId) async {
     if (!AppBootstrap.firebaseReady) return;
-    debugPrint('[CHAT] markRead chat=$chatId reader=$readerId');
+    DevLog.log('CHAT', 'markRead chat=$chatId reader=$readerId');
     final snap = await _messages(chatId)
         .where('receiverId', isEqualTo: readerId)
         .where('status', whereIn: [
@@ -65,7 +65,7 @@ class FirestoreChatService implements ChatService {
   @override
   Future<List<Message>> loadHistory(String chatId, {int limit = 50}) async {
     if (!AppBootstrap.firebaseReady) return [];
-    debugPrint('[CHAT] loadHistory chat=$chatId limit=$limit');
+    DevLog.log('CHAT', 'loadHistory chat=$chatId limit=$limit');
     final snap = await _messages(chatId)
         .orderBy('createdAt', descending: true)
         .limit(limit)
@@ -98,7 +98,7 @@ class FirestoreChatService implements ChatService {
   @override
   Future<void> setTyping(String chatId, String userId, {required bool active}) async {
     if (!AppBootstrap.firebaseReady) return;
-    debugPrint('[CHAT] typing user=$userId active=$active');
+    DevLog.log('CHAT', 'typing user=$userId active=$active');
     if (active) {
       await _typing(chatId).doc(userId).set({
         'active': true,

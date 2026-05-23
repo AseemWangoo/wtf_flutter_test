@@ -12,7 +12,7 @@ class TrainerApp extends StatelessWidget {
       title: 'Trainer',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(primary: AppColors.trainerPrimary),
-      home: const TrainerAppGate(),
+      home: const DevPanelShell(child: TrainerAppGate()),
     );
   }
 }

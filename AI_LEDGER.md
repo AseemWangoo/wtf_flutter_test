@@ -17,6 +17,17 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
+## Prompt #6 — Hour 5 session logs UI & DevPanel
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Session logs list with filters, wire home navigation, DevPanel for last 20 structured logs |
+| **Output** | `SessionLogsPage`, `SessionLogTile`, `DevLog`, `DevPanelShell`, `log_providers.dart` |
+| **Commit** | `feat: hour-5 session logs UI with filters and DevPanel` (pending) |
+
+---
+
 ## Prompt #5 — Hour 4 100ms video calls
 
 | Field | Value |

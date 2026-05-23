@@ -6,12 +6,6 @@ class GuruHomePage extends StatelessWidget {
 
   final User user;
 
-  void _comingSoon(BuildContext context, String feature) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature — coming in Hour 4+')),
-    );
-  }
-
   void _openChat(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -29,6 +23,17 @@ class GuruHomePage extends StatelessWidget {
       MaterialPageRoute<void>(
         builder: (_) => ScheduleCallPage(
           member: user,
+          primaryColor: AppColors.guruPrimary,
+        ),
+      ),
+    );
+  }
+
+  void _openSessions(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => SessionLogsPage(
+          currentUser: user,
           primaryColor: AppColors.guruPrimary,
         ),
       ),
@@ -82,7 +87,7 @@ class GuruHomePage extends StatelessWidget {
                   title: 'My Sessions',
                   subtitle: 'View session logs and ratings',
                   primary: AppColors.guruPrimary,
-                  onTap: () => _comingSoon(context, 'Sessions'),
+                  onTap: () => _openSessions(context),
                 ),
               ],
             ),

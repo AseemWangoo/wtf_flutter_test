@@ -10,6 +10,7 @@ import '../../models/user.dart';
 import '../../providers/service_providers.dart';
 import '../../services/hms_token_client.dart';
 import '../../utils/app_colors.dart';
+import '../../utils/dev_log.dart';
 import '../../utils/join_call_utils.dart';
 import '../../utils/scheduler_utils.dart';
 import '../../widgets/video_tile.dart';
@@ -80,6 +81,7 @@ class _CallFlowPageState extends ConsumerState<CallFlowPage>
       );
       await _hmsSdk!.preview(config: _config!);
     } catch (e) {
+      DevLog.log('RTC', 'bootstrap failed: $e');
       if (mounted) {
         setState(() {
           _phase = _CallPhase.error;
@@ -124,6 +126,7 @@ class _CallFlowPageState extends ConsumerState<CallFlowPage>
     if (_config == null || _hmsSdk == null) return;
     setState(() => _phase = _CallPhase.loading);
     _startedAt = DateTime.now();
+    DevLog.log('RTC', 'join room=${widget.roomId} user=${widget.currentUser.id}');
     _hmsSdk!.removePreviewListener(listener: this);
     await _hmsSdk!.join(config: _config!);
   }
@@ -144,6 +147,7 @@ class _CallFlowPageState extends ConsumerState<CallFlowPage>
 
   Future<void> _endCall() async {
     _endedAt = DateTime.now();
+    DevLog.log('RTC', 'end call room=${widget.roomId}');
     await _hmsSdk?.leave();
     if (mounted) setState(() => _phase = _CallPhase.postCall);
   }

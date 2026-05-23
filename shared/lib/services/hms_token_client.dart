@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/rtc_config.dart';
+import '../utils/dev_log.dart';
 
 class HmsTokenClient {
   HmsTokenClient({http.Client? client}) : _client = client ?? http.Client();
@@ -22,7 +22,7 @@ class HmsTokenClient {
         'roomId': roomId,
       },
     );
-    debugPrint('[RTC] fetch token user=$userId role=$role room=$roomId');
+    DevLog.log('RTC', 'fetch token user=$userId role=$role room=$roomId');
     final response = await _client.get(uri).timeout(const Duration(seconds: 8));
     if (response.statusCode != 200) {
       throw HmsTokenException(

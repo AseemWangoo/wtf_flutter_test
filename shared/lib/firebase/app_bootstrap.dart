@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+
+import '../utils/dev_log.dart';
 
 /// Initializes Firebase and optionally points Firestore at the local emulator.
 abstract final class AppBootstrap {
@@ -18,10 +19,10 @@ abstract final class AppBootstrap {
         FirebaseFirestore.instance.useFirestoreEmulator(emulatorHost, emulatorPort);
       }
       firebaseReady = true;
-      debugPrint('[AUTH] Firebase initialized (emulator=$useEmulator)');
+      DevLog.log('AUTH', 'Firebase initialized (emulator=$useEmulator)');
     } catch (e, st) {
       firebaseReady = false;
-      debugPrint('[AUTH] Firebase init failed: $e\n$st');
+      DevLog.log('AUTH', 'Firebase init failed: $e\n$st');
     }
   }
 }

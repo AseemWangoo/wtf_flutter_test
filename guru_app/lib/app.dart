@@ -12,7 +12,7 @@ class GuruApp extends StatelessWidget {
       title: 'Guru',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(primary: AppColors.guruPrimary),
-      home: const GuruAppGate(),
+      home: const DevPanelShell(child: GuruAppGate()),
     );
   }
 }
