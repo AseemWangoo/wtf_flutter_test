@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,11 +21,12 @@ class DevPanelShell extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         child,
-        const Positioned(
-          right: 12,
-          bottom: 12,
-          child: DevPanelFab(),
-        ),
+        if (kDebugMode)
+          const Positioned(
+            right: 12,
+            bottom: 12,
+            child: DevPanelFab(),
+          ),
       ],
     );
   }

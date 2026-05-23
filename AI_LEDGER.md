@@ -4,16 +4,14 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
-## Prompt #1 — Hour 0 setup & docs shell
+## Prompt #7 — Hour 6 polish, Members CRM, submission docs
 
 | Field | Value |
 |-------|-------|
 | **Tool** | Cursor (Claude) |
-| **Intent** | Scaffold monorepo: docs, `shared` package, `token_server`, Riverpod app shells, ADRs |
-| **Output** | `README.md`, `ARCHITECTURE.md`, `DECISIONS.md` (ADRs 1–4), `shared/` package, Node token server, themed `main.dart` stubs |
-| **Commit** | `chore: hour-0 setup — docs shell, shared package, token server` (pending) |
-
-**Snippet (ADR choice):** Riverpod for state; Hive + Firestore sync boundary; 100ms token server separate from Flutter.
+| **Intent** | Trainer Members CRM, submission checklist, 9-step demo script, platform URL table, DevPanel debug-only |
+| **Output** | `MembersPage`, `MemberSummary`, `SUBMISSION.md`, README end-to-end script |
+| **Commit** | `feat: hour-6 members CRM, submission docs, and demo polish` (pending) |
 
 ---
 
@@ -74,11 +72,50 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
+## Prompt #1 — Hour 0 setup & docs shell
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Scaffold monorepo: docs, `shared` package, `token_server`, Riverpod app shells, ADRs |
+| **Output** | `README.md`, `ARCHITECTURE.md`, `DECISIONS.md` (ADRs 1–4), `shared/` package, Node token server, themed `main.dart` stubs |
+| **Commit** | `chore: hour-0 setup — docs shell, shared package, token server` (pending) |
+
+**Snippet (ADR choice):** Riverpod for state; Hive + Firestore sync boundary; 100ms token server separate from Flutter.
+
+---
+
+## Prompt #8 — Post-call notes contrast fix
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Dark video screen made note TextFields unreadable while typing |
+| **Output** | White filled `InputDecoration` + dark text in `_PostCallBody` |
+| **Commit** | (include in hour-4/6 fix commit) |
+
+---
+
+## Prompt #9 — TOKEN_SERVER_URL platform guidance
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Clarify Android `10.0.2.2` vs iOS `localhost` for token server |
+| **Output** | README platform table; matches existing `bootstrap.dart` Firestore hosts |
+| **Commit** | (docs) |
+
+---
+
 ## Debugging with AI
 
 | # | Error | AI steps | Fix |
 |---|-------|----------|-----|
-| 1 | | | |
+| 1 | Post-call notes invisible on dark scaffold | Inspect `CallFlowPage` theme vs `TextField` defaults | White fill + explicit text/cursor colors |
+| 2 | HMS `peer.tracks` compile error on 1.11.1 | Check hmssdk API for installed version | Use `peer.videoTrack` |
+| 3 | Duplicate HMS listener methods | Merge single `HMSUpdateListener` impl | One method per callback |
+| 4 | `DevLog` stream type mismatch | Analyzer on `StreamController.add` | Use `StreamController<void>.broadcast()` |
+| 5 | Widget tests hung on SharedPreferences | Trace `HiveAuthService` in test bootstrap | `FakeAuthService` + short `pump` |
 
 ---
 
@@ -86,7 +123,9 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 | # | Before | After | Commit |
 |---|--------|-------|--------|
-| 1 | | | |
+| 1 | `debugPrint('[TAG]…')` scattered | Central `DevLog.log(tag, msg)` + DevPanel | Hour 5 |
+| 2 | Trainer `SetupHomePage` in guru_app | Moved to `shared` for reuse | Hour 1 |
+| 3 | "Coming soon" Sessions/Members stubs | Full `SessionLogsPage` + `MembersPage` | Hour 5–6 |
 
 ---
 

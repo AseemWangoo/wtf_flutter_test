@@ -55,7 +55,7 @@ Document exact role strings from your 100ms template in `token_server/.env` as `
 
 ## Observability
 
-Structured log tags: `[AUTH]`, `[CHAT]`, `[RTC]`, `[SCHEDULE]`. DevPanel (Hour 5+) surfaces last 20 entries.
+Structured log tags: `[AUTH]`, `[CHAT]`, `[RTC]`, `[SCHEDULE]`, `[LOG]`. **DevPanel** (debug builds) surfaces last 20 entries via floating **⋮** on app home.
 
 ## Security
 

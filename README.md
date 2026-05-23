@@ -72,8 +72,27 @@ cd trainer_app && flutter pub get && flutter run
 
 Copy `guru_app/.env.example` → `guru_app/.env` and `trainer_app/.env.example` → `trainer_app/.env` (or use `--dart-define`) with:
 
-- `TOKEN_SERVER_URL` — e.g. `http://10.0.2.2:3000` on Android emulator (host machine)
+- `TOKEN_SERVER_URL` — see [Host URLs by platform](#host-urls-by-platform) below
 - `HMS_TEMPLATE_ID` — same as token server
+- `HMS_DEV_ROOM_ID` — 100ms room id (for video calls)
+
+### Host URLs by platform
+
+| Target | Firestore emulator | Token server |
+|--------|-------------------|--------------|
+| Android emulator | `10.0.2.2:8080` (default) | `http://10.0.2.2:3000` |
+| iOS Simulator | `localhost:8080` | `http://localhost:3000` |
+| Physical device (same Wi‑Fi) | `http://<your-mac-ip>:8080` | `http://<your-mac-ip>:3000` |
+
+Apps pick Firestore host automatically in `bootstrap.dart` (Android vs iOS). Override token URL with:
+
+```bash
+# Android emulator
+flutter run --dart-define=TOKEN_SERVER_URL=http://10.0.2.2:3000
+
+# iOS Simulator
+flutter run --dart-define=TOKEN_SERVER_URL=http://localhost:3000
+```
 
 ### 4. Analyze (zero warnings target)
 
@@ -120,9 +139,23 @@ flutter run --dart-define=HMS_DEV_ROOM_ID=YOUR_ROOM_ID --dart-define=TOKEN_SERVE
 4. DK sends `Hi Coach 👋` → Trainer sees unread badge → open chat → reply.
 5. Verify: blue (DK) / red (Aarav) bubbles, typing dots, ✓ / ✓✓ ticks, quick-reply chips.
 
-## Manual test script (full)
+## End-to-end demo script (9 steps)
 
-See assessment doc section 6 — 9-step flow: onboard DK → chat → schedule → approve → join 100ms → end → session logs.
+Prerequisites: Firestore emulator, token server with valid 100ms `.env`, two emulators (Guru + Trainer).
+
+| Step | App | Action | Expected |
+|------|-----|--------|----------|
+| 1 | Guru | Complete onboarding → assign Aarav | Home with 3 cards |
+| 2 | Guru | **Chat with Trainer** → send `Hi Coach 👋` | Message appears; typing delay |
+| 3 | Trainer | **Chats** → open DK → reply | DK sees reply; read receipts update |
+| 4 | Guru | **Schedule Call** → Today → slot → note → **Request Call** | Pending under My Requests |
+| 5 | Trainer | **Requests** → **Approve** | Guru chat system message; upcoming call listed |
+| 6 | Both | **Join Call** (schedule or chat camera) → pre-join → **Join** | Two video tiles |
+| 7 | Both | Mute / camera / flip → **End** | Post-call screen |
+| 8 | Guru | Rate 1–5 + optional note → **Submit** | Session saved toast |
+| 9 | Both | **My Sessions** / **Sessions** | Log with duration; filters; Trainer **Members** shows DK |
+
+Debug: tap **⋮** DevPanel on home (debug builds) for tagged logs.
 
 ## Commits
 
@@ -130,6 +163,8 @@ Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:
 
 ## Submission
 
+See **[SUBMISSION.md](SUBMISSION.md)** for the full checklist.
+
 - GitHub repo link
-- 3-min demo video (end-to-end manual test)
+- ~3 min demo video (follow 9-step script above)
 - `AI_LEDGER.md` with ≥10 meaningful AI entries

@@ -6,9 +6,14 @@ class TrainerHomePage extends StatelessWidget {
 
   final User user;
 
-  void _comingSoon(BuildContext context, String feature) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature — coming soon')),
+  void _openMembers(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => MembersPage(
+          trainer: user,
+          primaryColor: AppColors.trainerPrimary,
+        ),
+      ),
     );
   }
 
@@ -63,7 +68,7 @@ class TrainerHomePage extends StatelessWidget {
                   icon: Icons.people_outline,
                   label: 'Members',
                   color: AppColors.trainerPrimary,
-                  onTap: () => _comingSoon(context, 'Members'),
+                  onTap: () => _openMembers(context),
                 ),
                 _Tile(
                   icon: Icons.chat_outlined,
