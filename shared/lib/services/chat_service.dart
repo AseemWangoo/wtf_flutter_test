@@ -6,4 +6,8 @@ abstract class ChatService {
   Future<void> sendMessage(Message message);
   Future<void> markRead(String chatId, String readerId);
   Future<List<Message>> loadHistory(String chatId, {int limit = 50});
+
+  /// Peer-visible typing indicator (Firestore `chats/{id}/typing/{userId}`).
+  Stream<Set<String>> watchTypingUserIds(String chatId);
+  Future<void> setTyping(String chatId, String userId, {required bool active});
 }

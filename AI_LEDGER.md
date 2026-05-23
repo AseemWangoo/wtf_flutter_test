@@ -17,6 +17,17 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
+## Prompt #3 — Hour 2 chat UI
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Chat list, conversation bubbles, typing sim, read receipts, quick replies, Firestore sync |
+| **Output** | `ConversationPage`, `ChatListPage`, chat providers, typing in Firestore, shared widgets |
+| **Commit** | `feat: hour-2 chat UI with Firestore sync and read receipts` (pending) |
+
+---
+
 ## Prompt #2 — Hour 0.5–1.5 shared foundation
 
 | Field | Value |

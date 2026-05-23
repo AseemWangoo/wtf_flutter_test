@@ -8,7 +8,19 @@ class GuruHomePage extends StatelessWidget {
 
   void _comingSoon(BuildContext context, String feature) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature — coming in Hour 2+')),
+      SnackBar(content: Text('$feature — coming in Hour 3+')),
+    );
+  }
+
+  void _openChat(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ConversationPage(
+          currentUser: user,
+          peer: SeedData.aarav,
+          chatId: AppConstants.dkAaravChatId,
+        ),
+      ),
     );
   }
 
@@ -43,7 +55,7 @@ class GuruHomePage extends StatelessWidget {
                   title: 'Chat with Trainer',
                   subtitle: 'Message ${trainer.name}',
                   primary: AppColors.guruPrimary,
-                  onTap: () => _comingSoon(context, 'Chat'),
+                  onTap: () => _openChat(context),
                 ),
                 const SizedBox(height: 12),
                 HomeCard(

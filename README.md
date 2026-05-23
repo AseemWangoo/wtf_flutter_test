@@ -83,7 +83,15 @@ cd ../guru_app && flutter pub get && flutter analyze
 cd ../trainer_app && flutter pub get && flutter analyze
 ```
 
-## Manual test script
+## Manual test — Chat (Hour 2)
+
+1. Start Firestore emulator (`firebase emulators:start --only firestore`).
+2. Run **Trainer** → Continue as Aarav → **Chats** → open DK thread.
+3. Run **Guru** on second emulator → complete onboarding → **Chat with Trainer**.
+4. DK sends `Hi Coach 👋` → Trainer sees unread badge → open chat → reply.
+5. Verify: blue (DK) / red (Aarav) bubbles, typing dots, ✓ / ✓✓ ticks, quick-reply chips.
+
+## Manual test script (full)
 
 See assessment doc section 6 — 9-step flow: onboard DK → chat → schedule → approve → join 100ms → end → session logs.
 
