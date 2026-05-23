@@ -21,6 +21,21 @@ class CallRequest {
   final CallRequestStatus status;
   final String? declineReason;
 
+  CallRequest copyWith({
+    CallRequestStatus? status,
+    String? declineReason,
+  }) =>
+      CallRequest(
+        id: id,
+        memberId: memberId,
+        trainerId: trainerId,
+        requestedAt: requestedAt,
+        scheduledFor: scheduledFor,
+        note: note,
+        status: status ?? this.status,
+        declineReason: declineReason ?? this.declineReason,
+      );
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'memberId': memberId,

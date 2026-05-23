@@ -8,7 +8,7 @@ class GuruHomePage extends StatelessWidget {
 
   void _comingSoon(BuildContext context, String feature) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature — coming in Hour 3+')),
+      SnackBar(content: Text('$feature — coming in Hour 4+')),
     );
   }
 
@@ -19,6 +19,17 @@ class GuruHomePage extends StatelessWidget {
           currentUser: user,
           peer: SeedData.aarav,
           chatId: AppConstants.dkAaravChatId,
+        ),
+      ),
+    );
+  }
+
+  void _openSchedule(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ScheduleCallPage(
+          member: user,
+          primaryColor: AppColors.guruPrimary,
         ),
       ),
     );
@@ -63,7 +74,7 @@ class GuruHomePage extends StatelessWidget {
                   title: 'Schedule Call',
                   subtitle: 'Book a 30-minute session',
                   primary: AppColors.guruPrimary,
-                  onTap: () => _comingSoon(context, 'Scheduler'),
+                  onTap: () => _openSchedule(context),
                 ),
                 const SizedBox(height: 12),
                 HomeCard(

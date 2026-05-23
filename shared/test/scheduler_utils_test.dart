@@ -35,4 +35,24 @@ void main() {
       expect(hasScheduleConflict(candidate, approved), isTrue);
     });
   });
+
+  group('timeSlotsForDay', () {
+    test('skips past slots on today', () {
+      final now = DateTime(2026, 5, 22, 12, 0);
+      final slots = timeSlotsForDay(DateTime(2026, 5, 22), now: now);
+      expect(slots.every((s) => s.isAfter(now)), isTrue);
+      expect(slots.first.hour, 12);
+      expect(slots.first.minute, 30);
+    });
+  });
+
+  group('nextThreeDays', () {
+    test('returns today plus two', () {
+      final now = DateTime(2026, 5, 22);
+      final days = nextThreeDays(now: now);
+      expect(days.length, 3);
+      expect(days.first.day, 22);
+      expect(days.last.day, 24);
+    });
+  });
 }

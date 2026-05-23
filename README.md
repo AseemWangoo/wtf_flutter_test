@@ -83,6 +83,15 @@ cd ../guru_app && flutter pub get && flutter analyze
 cd ../trainer_app && flutter pub get && flutter analyze
 ```
 
+## Manual test — Scheduler (Hour 3)
+
+1. Firestore emulator running; Guru + Trainer apps open.
+2. Guru → **Schedule Call** → pick Today → **6:00 PM** → note `Macros review` → **Request Call**.
+3. Toast: *Call requested. Waiting for trainer approval.* — request shows under **My Requests**.
+4. Trainer → **Requests** → see DK pending → **Approve**.
+5. Guru chat shows system message: *Call approved for Today 6:00 PM.*
+6. Guru **Upcoming Calls** section lists approved slot. Try double-booking same slot → error.
+
 ## Manual test — Chat (Hour 2)
 
 1. Start Firestore emulator (`firebase emulators:start --only firestore`).

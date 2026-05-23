@@ -17,6 +17,17 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
+## Prompt #4 — Hour 3 scheduler
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | Schedule UI, approve/decline, conflict checks, system chat messages, RoomMeta on approve |
+| **Output** | `ScheduleCallPage`, `TrainerRequestsPage`, `ScheduleController`, day/time chips |
+| **Commit** | `feat: hour-3 call scheduler with approve/decline workflow` (pending) |
+
+---
+
 ## Prompt #3 — Hour 2 chat UI
 
 | Field | Value |

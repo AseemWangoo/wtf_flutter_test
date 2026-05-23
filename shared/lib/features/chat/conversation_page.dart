@@ -168,6 +168,27 @@ class _ConversationPageState extends ConsumerState<ConversationPage> {
                         return const TypingIndicator();
                       }
                       final message = messages[index];
+                      if (message.isSystem) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: AppColors.neutral100,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                message.text,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: AppColors.neutral700,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                       final isMine = message.senderId == widget.currentUser.id;
                       return MessageBubble(
                         message: message,

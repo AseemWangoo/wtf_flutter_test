@@ -9,6 +9,7 @@ class Message {
     required this.text,
     required this.createdAt,
     this.status = MessageStatus.sent,
+    this.isSystem = false,
   });
 
   final String id;
@@ -18,6 +19,7 @@ class Message {
   final String text;
   final DateTime createdAt;
   final MessageStatus status;
+  final bool isSystem;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -27,6 +29,7 @@ class Message {
         'text': text,
         'createdAt': createdAt.toIso8601String(),
         'status': status.name,
+        'isSystem': isSystem,
       };
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
@@ -37,5 +40,6 @@ class Message {
         text: json['text'] as String,
         createdAt: DateTime.parse(json['createdAt'] as String),
         status: MessageStatus.values.byName(json['status'] as String),
+        isSystem: json['isSystem'] as bool? ?? false,
       );
 }
