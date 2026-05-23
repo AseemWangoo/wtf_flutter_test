@@ -83,6 +83,18 @@ cd ../guru_app && flutter pub get && flutter analyze
 cd ../trainer_app && flutter pub get && flutter analyze
 ```
 
+## Manual test — 100ms video (Hour 4)
+
+1. Set `HMS_DEV_ROOM_ID` in `token_server/.env` (room id from [100ms dashboard](https://dashboard.100ms.live/)).
+2. `cd token_server && npm start`
+3. Approve a call (Hour 3), then on both apps tap **Join Call** (schedule / chat camera icon).
+4. Pre-join → **Join Call** → mute/video/flip → **End** → rate / notes → session log.
+
+```bash
+# Optional: pass room id to Flutter
+flutter run --dart-define=HMS_DEV_ROOM_ID=YOUR_ROOM_ID --dart-define=TOKEN_SERVER_URL=http://10.0.2.2:3000
+```
+
 ## Manual test — Scheduler (Hour 3)
 
 1. Firestore emulator running; Guru + Trainer apps open.

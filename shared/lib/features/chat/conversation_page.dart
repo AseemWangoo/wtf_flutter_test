@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../features/call/join_call_helper.dart';
 import '../../models/message.dart';
 import '../../models/user.dart';
 import '../../providers/chat_providers.dart';
@@ -96,6 +97,7 @@ class _ConversationPageState extends ConsumerState<ConversationPage> {
 
     final typingUsers = typingAsync.valueOrNull ?? {};
     final peerTyping = typingUsers.contains(widget.peer.id);
+    final joinableCall = joinableCallForUser(ref, widget.currentUser.id);
 
     return Scaffold(
       appBar: AppBar(
@@ -112,19 +114,23 @@ class _ConversationPageState extends ConsumerState<ConversationPage> {
           ],
         ),
         actions: [
-          IconButton(
-            tooltip: 'Video call (Hour 4)',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Video call — coming in Hour 4')),
-              );
-            },
-            icon: Badge(
-              label: const Text(' '),
-              smallSize: 8,
-              child: const Icon(Icons.videocam_outlined),
+          if (joinableCall != null)
+            IconButton(
+              tooltip: 'Join video call',
+              onPressed: () => openCallFlow(
+                context: context,
+                ref: ref,
+                currentUser: widget.currentUser,
+                peer: widget.peer,
+                request: joinableCall,
+              ),
+              icon: Badge(
+                isLabelVisible: true,
+                smallSize: 8,
+                backgroundColor: AppColors.success,
+                child: const Icon(Icons.videocam_outlined),
+              ),
             ),
-          ),
         ],
       ),
       body: Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../features/call/join_call_helper.dart';
 import '../../models/user.dart';
 import '../../providers/call_providers.dart';
 import '../../utils/app_colors.dart';
@@ -167,6 +168,13 @@ class _ScheduleCallPageState extends ConsumerState<ScheduleCallPage> {
                   child: CallRequestTile(
                     request: r,
                     trainerName: trainer.name,
+                    onJoin: () => openCallFlow(
+                      context: context,
+                      ref: ref,
+                      currentUser: widget.member,
+                      peer: trainer,
+                      request: r,
+                    ),
                   ),
                 ),
               ),

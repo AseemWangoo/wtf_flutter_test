@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/call_request.dart';
 import '../utils/app_colors.dart';
+import '../utils/join_call_utils.dart';
 import '../utils/scheduler_utils.dart';
 
 class CallRequestTile extends StatelessWidget {
@@ -13,6 +14,7 @@ class CallRequestTile extends StatelessWidget {
     this.showActions = false,
     this.onApprove,
     this.onDecline,
+    this.onJoin,
   });
 
   final CallRequest request;
@@ -21,6 +23,7 @@ class CallRequestTile extends StatelessWidget {
   final bool showActions;
   final VoidCallback? onApprove;
   final VoidCallback? onDecline;
+  final VoidCallback? onJoin;
 
   Color _statusColor(CallRequestStatus status) {
     switch (status) {
@@ -102,6 +105,16 @@ class CallRequestTile extends StatelessWidget {
                     color: AppColors.neutral700,
                   ),
             ),
+            if (onJoin != null &&
+                request.status == CallRequestStatus.approved &&
+                canJoinCall(request)) ...[
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                onPressed: onJoin,
+                icon: const Icon(Icons.videocam),
+                label: const Text('Join Call'),
+              ),
+            ],
             if (showActions && request.status == CallRequestStatus.pending) ...[
               const SizedBox(height: 12),
               Row(

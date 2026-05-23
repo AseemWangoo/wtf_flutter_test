@@ -17,6 +17,17 @@ Structured log of AI-assisted work for the WTF Flutter assessment. Update on eve
 
 ---
 
+## Prompt #5 — Hour 4 100ms video calls
+
+| Field | Value |
+|-------|-------|
+| **Tool** | Cursor (Claude) |
+| **Intent** | hmssdk_flutter CallFlowPage, pre-join, in-call controls, post-call logs, join buttons |
+| **Output** | `call_flow_page.dart`, `join_call_helper.dart`, token client, Android/iOS permissions |
+| **Commit** | `feat: hour-4 100ms video calls with pre-join and session logs` (pending) |
+
+---
+
 ## Prompt #4 — Hour 3 scheduler
 
 | Field | Value |

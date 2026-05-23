@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/seed_data.dart';
+import '../../features/call/join_call_helper.dart';
 import '../../models/call_request.dart';
 import '../../models/user.dart';
 import '../../providers/call_providers.dart';
@@ -114,6 +115,15 @@ class TrainerRequestsPage extends ConsumerWidget {
                 showActions: request.status == CallRequestStatus.pending,
                 onApprove: () => _approve(context, ref, request),
                 onDecline: () => _decline(context, ref, request),
+                onJoin: request.status == CallRequestStatus.approved
+                    ? () => openCallFlow(
+                          context: context,
+                          ref: ref,
+                          currentUser: trainer,
+                          peer: SeedData.dkTemplate,
+                          request: request,
+                        )
+                    : null,
               );
             },
           );

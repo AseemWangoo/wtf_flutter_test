@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../config/rtc_config.dart';
 import '../../data/constants.dart';
 import '../../firebase/app_bootstrap.dart';
 import '../../models/call_request.dart';
@@ -72,7 +73,8 @@ class FirestoreCallService implements CallService {
 
   @override
   Future<RoomMeta> createRoomOnApprove(CallRequest request) async {
-    final roomId = request.id;
+    final roomId =
+        RtcConfig.devRoomId.isNotEmpty ? RtcConfig.devRoomId : request.id;
     final meta = RoomMeta(
       id: _uuid.v4(),
       callRequestId: request.id,
